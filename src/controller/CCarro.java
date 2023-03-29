@@ -33,14 +33,14 @@ public class CCarro {
     
     public Carro getCarroPlaca(String Placa) {
         Carro c = null;
-        for (Carro car : carros) {
-            if (car.getPlaca().equals(Placa)){
-                c = car;
+        for (Carro carro : carros) {
+            if (carro.getPlaca().equals(Placa)){
+                c = carro;
                 break;
             }
-        }
+        }//Fim do for
         return c;
-    }
+    }//Fim do public Carro getCarroPlaca
     
     public void mockCarros() {
         Carro c1 = new Carro();
@@ -63,7 +63,7 @@ public class CCarro {
         c2.setCor("Cinza");
         c2.setTpCambio("Automático");
         c2.setCombustivel("Flex");
-        c2.setProprietario(cadPessoa.getPessoaCPF("18585960094"));
+        c2.setProprietario(cadPessoa.getPessoaCPF("89177634055"));
         addCarro(c2);
     }//Fim da mockCarros
 }
