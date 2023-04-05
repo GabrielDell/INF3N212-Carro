@@ -300,7 +300,7 @@ public class INF3N212Carro {
                 System.out.println("CPF inválido!"
                         + "\nTente novamente.");
                 delCPF = true;
-            }
+            }//Fim do primeiro 'if else'
 
         } while (delCPF);//Fim do 'do while'
 
