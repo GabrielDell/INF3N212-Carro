@@ -8,6 +8,7 @@ import controller.CCarro;
 import controller.CPessoa;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import model.Carro;
 import model.Pessoa;
 import util.Validadores;
 
@@ -183,7 +184,33 @@ public class INF3N212Carro {
     }
 
     private static void cadastrarCarro() {
-        System.out.println("Cadastrar Carro");
+        System.out.println("-- Cadastrar Carro --");
+        String placa;   
+        String marca;
+        String modelo;
+        int anoFab;
+        int anoMod;
+        String cor;
+        String tpCambio;
+        String combustivel;
+        Pessoa proprietario;
+        boolean pCarro = true;
+        do {
+            System.out.print("Informe a placa: ");
+            placa = leia.nextLine();
+            pCarro = Validadores.validarPlaca(placa);
+            if (pCarro) {
+                Carro carro = cadCarro.getCarroPlaca(placa);
+                if (carro == null) {
+                    //segue fluxo de cadastro
+                }else{
+                    System.out.println("Placa já cadastrada.");
+                }//Fim do segundo 'if'
+            }else{
+                System.out.println("Placa inválida! Tente novamente!");
+                pCarro = true;
+            }//Fim do primeiro 'if'
+        } while (pCarro);//Fim do 'do while'
     }
 
     private static void editarPessoa() {
@@ -196,39 +223,43 @@ public class INF3N212Carro {
             if (isCPF) {
                 Pessoa p = cadPessoa.getPessoaCPF(cpf);
                 if (p != null) {
-                    System.out.println("Quais dados de " + p.getNome() + "deseja alterar?");
-                    System.out.println("1 - Nome");
-                    System.out.println("2 - Endereço");
-                    System.out.println("3 - Telefone");
-                    System.out.println("4 - Todos");
-                    System.out.println("0 - Cancelar");
-                    System.out.println("Digite aqui: ");
-                    int op = leiaNumInt();
-                    if (op == 1 || op == 4) {
-                        System.out.print("Informe o novo nome: ");
-                        p.setNome(leia.nextLine());
-                        System.out.println("Nome alterado com sucesso" + p.getNome());
-                        isCPF = false;
-                    } 
-                   if (op == 2 || op == 4) {
-                        System.out.print("Informe o novo endereço: ");
-                        p.setEndereco(leia.nextLine());
-                        System.out.println("Endereço alterado com sucesso" + p.getEndereco());
-                        isCPF = false;
+                    do {
+                        System.out.println("Quais dados de " + p.getNome() + "deseja alterar?");
+                        System.out.println("1 - Nome");
+                        System.out.println("2 - Endereço");
+                        System.out.println("3 - Telefone");
+                        System.out.println("4 - Todos");
+                        System.out.println("0 - Cancelar");
+                        System.out.println("Digite aqui: ");
+                        int op = leiaNumInt();
+                        if (op == 1 || op == 4) {
+                            System.out.print("Informe o novo nome: ");
+                            p.setNome(leia.nextLine());
+                            System.out.println("Nome alterado com sucesso para " + p.getNome());
+                        }
+                        if (op == 2 || op == 4) {
+                            System.out.print("Informe o novo endereço: ");
+                            p.setEndereco(leia.nextLine());
+                            System.out.println("Endereço alterado com sucesso para " + p.getEndereco());
+                        }
+
+                        if (op == 3 || op == 4) {
+                            System.out.print("Informe o novo telefone: ");
+                            p.setTelefone(leia.nextLine());
+                            System.out.println("Telefone alterado com sucesso para " + p.getTelefone());
+                        }
+
+                        if (op == 0) {
+                            System.out.print("Operação cancelada pelo usuário! ");
+                            isCPF = false;
+                        }
+                      
+                        if (op < 0 || op > 4) {
+                            System.out.println("Opção inválida, tente novamente!");
+                        }
+                        
+                    } while (isCPF);//Fim do segundo 'do while'
                     
-                   if (op == 3 || op == 4) {
-                        System.out.print("Informe o novo telefone: ");
-                        p.setTelefone(leia.nextLine());
-                        System.out.println("Telefone alterado com sucesso" + p.getTelefone());
-                        isCPF = false;
-                    }
-                    if (op == 0) {
-                        System.out.print("Operação cancelada pelo usuário! ");
-                        isCPF = false;
-                    }
-                   
-                   
-                   
                 } else {
                     System.out.println("CPF não cadastrado!");
                     isCPF = false;
@@ -238,11 +269,12 @@ public class INF3N212Carro {
                 System.out.print("Deseja tentar novamente? \n 1 - Sim | 2 - Não: ");
                 int op = leiaNumInt();
                 isCPF = op == 1; // Variavel isCPF boolean recebendo um teste lógico true/false
-            }
-            }//Fim do primeiro 'if else'
-        } while (isCPF);//Fim do 'do while'
-        
-    }  
+            } //Fim do primeiro 'if else'
+
+        } while (isCPF);//Fim do primeiro 'do while'
+
+    }
+
     private static void editarCarro() {
         System.out.println("Editar Carro");
     }
@@ -272,7 +304,7 @@ public class INF3N212Carro {
             if (delCPF) {
                 Pessoa p = cadPessoa.getPessoaCPF(cpf);
                 if (p != null) {
-                    System.out.println("Deseja realmente deletar" + p.getNome() + "?");
+                    System.out.println("Deseja realmente deletar " + p.getNome() + "?");
                     System.out.print("1 - Sim | 2 - Não: ");
                     int op = leiaNumInt();
                     if (op == 1) {
