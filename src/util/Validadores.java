@@ -86,7 +86,7 @@ public class Validadores {
             if (placa.length() < 7) {
                 placaValida = false;
             } else {
-                if (!placa.matches("A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}|[A-Z]{3}[0-9]{4}")) {
+                if (!placa.matches("[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}|[A-Z]{3}[0-9]{4}")) {
                     placaValida = false;
                 }
             }
@@ -94,6 +94,7 @@ public class Validadores {
 
         return placaValida;
     }
+    
     public static boolean validarAnoCarro(int anoFab, int anoMod) {
         boolean anoOK = true;
         int anoAtual = LocalDate.now().getYear();
