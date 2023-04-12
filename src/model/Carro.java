@@ -111,6 +111,6 @@ public class Carro {
         return "\n---\t" + "\nPlaca:\t" + placa + "\nMarca:\t" + marca + "\nModelo:\t" + modelo 
                 + "\nAno Fab:\t" + anoFab + "\nAno Mod:\t" + anoMod + "\nCor:\t" + cor 
                 + "\nTipo de Cambio:\t" + tpCambio + "\nCombustivel:\t" + combustivel
-                + "\nProprietario:\t" + proprietario.getNome() + '}';
+                + "\nProprietario:\t" + proprietario.getNome();
     }//Fim do toString 
 }//Fim Classe Carro
